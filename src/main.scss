@@ -1,0 +1,7 @@
+@use 'variables';
+@use 'myComponent';
+
+body {
+  background: variables.$black;
+  color: variables.$white;
+}
