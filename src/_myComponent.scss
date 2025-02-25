@@ -1,6 +1,4 @@
-@use 'variables';
-
-$componentBg: variables.$lightBg;
+$componentBg: #ffccff !default;
 
 .my-component {
   background: $componentBg;

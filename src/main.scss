@@ -1,5 +1,6 @@
 @use 'variables';
-@use 'myComponent';
+// @use 'myComponent';
+@use 'myComponent' with ($componentBg: variables.$lightBg);
 
 body {
   background: variables.$black;
