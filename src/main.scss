@@ -1,10 +1,10 @@
-@use "sass:meta";
 @use 'variables';
+@use 'myComponent';
 
-@include meta.load-css('myComponent', $with: ('componentBg': variables.$darkBg));
+@include myComponent.myComponent(variables.$darkBg);
 
 .light {
-  @include meta.load-css('myComponent', $with: ('componentBg': variables.$lightBg));
+  @include myComponent.myComponent(variables.$lightBg);
 }
 
 body {

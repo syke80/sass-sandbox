@@ -1,5 +1,5 @@
-$componentBg: #ffccff !default;
-
-.my-component {
-  background: $componentBg;
+@mixin myComponent($componentBg) {
+  .my-component {
+    background: $componentBg;
+  }
 }
