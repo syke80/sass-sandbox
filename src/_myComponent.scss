@@ -4,7 +4,8 @@
 $themeMap: (
   default: (
     'bgColor': variables.$darkBg,
-    'textColor': variables.$white
+    'textColor': variables.$white,
+    'someVariableWithDefaultFallback': variables.$red
   ),
   light: (
     'bgColor': variables.$lightBg,
@@ -13,8 +14,14 @@ $themeMap: (
 );
 
 @mixin myComponent($theme: 'default') {
-  .my-component {
-    background: theme.themed('bgColor', $themeMap, $theme);
-    color: theme.themed('textColor', $themeMap, $theme);
+  @include theme.with-theme($themeMap, $theme) {
+    .my-component {
+      background: theme.themed('bgColor');
+      color: theme.themed('textColor');
+
+      strong {
+        color: theme.themed('someVariableWithDefaultFallback');
+      }
+    }
   }
 }

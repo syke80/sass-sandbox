@@ -1,16 +1,27 @@
 @use "sass:map";
 
-@function themed($itemKey, $themeMap, $themeKey: 'default') {
-  $entityMap: map.get($themeMap, $themeKey);
+@mixin with-theme($themeMap, $themeKey: 'default') {
+  $globalThemeMap: $themeMap !global;
+  $globalThemeKey: $themeKey !global;
+  
+  @content;
+  
+  $globalThemeMap: null !global;
+  $globalThemeKey: null !global;
+}
+
+@function themed($itemKey) {
+  $entityMap: map.get($globalThemeMap, $globalThemeKey);
 
   @if not $entityMap {
-    @error 'There is no `#{$themeKey}` entry in your theme map.';
+    @error 'There is no `#{$globalThemeKey}` entry in your theme map.';
   }
 
   $value: map.get($entityMap, $itemKey);
 
   @if not $value and $value != false {
-    $value: map.get($entityMap, 'default');
+    $defaultMap: map.get($globalThemeMap, 'default');
+    $value: map.get($defaultMap, $itemKey);
 
     @if not $value and $value != false  {
       @error 'The theme `default` doesn\'t have a value for `#{$itemKey}`.';
