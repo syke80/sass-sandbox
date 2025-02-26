@@ -1,5 +1,21 @@
-@mixin myComponent($componentBg) {
+@use 'variables';
+@use 'theme';
+
+$themeMap: (
+  default: (
+    'bgColor': variables.$darkBg,
+    'textColor': variables.$white
+  ),
+  light: (
+    'bgColor': variables.$lightBg,
+    'textColor': variables.$white
+  )
+);
+
+
+@mixin myComponent($theme: 'default') {
   .my-component {
-    background: $componentBg;
+    background: theme.themed('bgColor', $themeMap, $theme);
+    color: theme.themed('textColor', $themeMap, $theme);
   }
 }
