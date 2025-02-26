@@ -12,7 +12,6 @@ $themeMap: (
   )
 );
 
-
 @mixin myComponent($theme: 'default') {
   .my-component {
     background: theme.themed('bgColor', $themeMap, $theme);

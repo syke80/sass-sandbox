@@ -1,42 +1,21 @@
-// @function themed($itemKey, $themeMap: $theme-map, $themeKey: 'default') {
-//   $entityMap: map-get($themeMap, $themeKey);
+@use "sass:map";
 
-//   @if not $entityMap {
-//     @error 'There is no `#{$themeKey}` entry in your theme map.';
-//   }
+@function themed($itemKey, $themeMap, $themeKey: 'default') {
+  $entityMap: map.get($themeMap, $themeKey);
 
-//   $value: map-get($entityMap, $itemKey);
-
-//   @if not $value and $value != false {
-//     $value: map-get($entityMap, 'default');
-
-//     @if not $value and $value != false  {
-//       @error 'The theme `default` doesn\'t have a value for `#{$itemKey}`.';
-//     }
-//   }
-
-//   @return $value;
-// }
-
-// Factory function that returns a new themed function with pre-configured parameters
-@function create-themed-function($map: $theme-map, $theme-key: 'default') {
-  // Return a function that only needs the item key
-  @return {
-    $entity-map: map-get($map, $theme-key);
-    
-    @if not $entity-map {
-      @error 'There is no `#{$theme-key}` entry in your theme map.';
-    }
-    
-    $value: map-get($entity-map, $item-key);
-    
-    @if not $value and $value != false {
-      $value: map-get($entity-map, 'default');
-      @if not $value and $value != false {
-        @error 'The theme `default` doesn\'t have a value for `#{$item-key}`.';
-      }
-    }
-    
-    @return $value;
+  @if not $entityMap {
+    @error 'There is no `#{$themeKey}` entry in your theme map.';
   }
+
+  $value: map.get($entityMap, $itemKey);
+
+  @if not $value and $value != false {
+    $value: map.get($entityMap, 'default');
+
+    @if not $value and $value != false  {
+      @error 'The theme `default` doesn\'t have a value for `#{$itemKey}`.';
+    }
+  }
+
+  @return $value;
 }
